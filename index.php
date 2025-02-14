@@ -13,7 +13,7 @@
     <main>
         <div class="login-container">
 
-            <form class="login" action="inicio_sesion.php" method="POST">
+            <form class="login" action="index.php" method="POST">
                 <h2 class="inicio-sesion">Iniciar Sesión</h2>
                 <input type="text" name="username" placeholder="Usuario" required>
                 <input type="password" name="password" placeholder="Contraseña" required>

@@ -18,11 +18,11 @@ if (isset($_COOKIE['user_token'])) {
     if ($fila = $resultado->fetch_assoc()) {
         $_SESSION['id'] = $fila['id']; 
     } else {
-        header("Location: inicio_sesion.php");
+        header("Location: index.php");
         exit();
     }
 } else {
-    header("Location: inicio_sesion.php"); 
+    header("Location: index.php"); 
     exit();
 }
 $mysql = new mysqli("localhost", "root", "", "contenido_digital");

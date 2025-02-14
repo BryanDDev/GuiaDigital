@@ -18,6 +18,6 @@ if (isset($_COOKIE['token'])) {
 }
 
 
-header("Location: inicio_sesion.php");
+header("Location: index.php");
 exit();
 ?>

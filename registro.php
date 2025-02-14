@@ -51,7 +51,7 @@
             $sql = "INSERT INTO usuario (nombres, apellidos, correo, password, username) VALUES ('" . $nombre . "', '" . $apellido . "',  '$correo','" . $contraseña . "', '" . $username . "')";
             $stmt = $mysql->prepare($sql);
             if ($stmt->execute()) {
-                header("Location: inicio_sesion.php");
+                header("Location: index.php");
             } else {
                 echo "<p>Error al insertar: " . $stmt->error . "</p>";
             }
@@ -61,7 +61,7 @@
 
     $mysql->close();
     ?>
-    <a href="inicio_sesion.php">Volver</a>
+    <a href="index.php">Volver</a>
 </body>
 
 </html>

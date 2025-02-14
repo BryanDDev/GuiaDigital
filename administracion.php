@@ -13,7 +13,7 @@
     <?php
     session_start();
 
-    // Verificar si hay un token de usuario válido en la cookie
+    
     if (isset($_COOKIE['user_token'])) {
         $mysql = new mysqli("localhost", "root", "", "login");
         if ($mysql->connect_error) {
@@ -22,20 +22,18 @@
     
         $token = $_COOKIE['user_token'];
     
-        // Verificar el token en la base de datos
-        $stmt = $mysql->prepare("SELECT id FROM usuario WHERE token = ?");
-        $stmt->bind_param("s", $token);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
+        
+    $resultado = $mysql->execute_query("SELECT id FROM usuario WHERE token = '$token'");
+
     
         if ($fila = $resultado->fetch_assoc()) {
             $_SESSION['id'] = $fila['id']; 
         } else {
-            header("Location: inicio_sesion.php"); 
+            header("Location: index.php"); 
             exit();
         }
     } else {
-        header("Location: inicio_sesion.php"); 
+        header("Location: index.php"); 
     }
     ?>
     <h1>Administrador</h1>
@@ -91,7 +89,7 @@
 
 
 
-        $sql = "INSERT INTO `$categoria` (nombre, creador, valoracion, imagen) VALUES ('" . $nombre . "', '" . $creador . "',  '$valoracion','" . $url . "')";
+        $sql = "INSERT INTO todo (nombre, creador, valoracion, imagen, categoria) VALUES ('" . $nombre . "', '" . $creador . "',  '$valoracion','" . $url . "', '".$categoria."') ";
         $stmt = $mysql->prepare($sql);
 
         if (!$stmt) {
