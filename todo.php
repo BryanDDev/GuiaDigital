@@ -74,7 +74,7 @@ $registros = $mysql->query($sql) or die($mysql->error);
             <li><a href="todo.php?categoria=musica">Música</a></li>
             <li><a href="todo.php?categoria=peliculas">Películas</a></li>
             <li><a href="todo.php?categoria=videojuegos">Videojuegos</a></li>
-            <li><a href="inicio_sesion.html"><img src="imagenes/admin.png" alt="login"></a></li>
+            <li><a href="login_administrador.php"><img src="imagenes/admin.png" alt="login"></a></li>
         </ul>
     </nav>
 

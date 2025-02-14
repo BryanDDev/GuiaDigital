@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<h1 class="titulo-index">GUIA DIGITAL</h1>
+    <h1 class="titulo-index">GUIA DIGITAL</h1>
     <main>
         <div class="login-container">
 
@@ -19,21 +19,21 @@
                 <input type="password" name="password" placeholder="Contraseña" required>
                 <button type="submit">Iniciar Sesión</button>
                 <h6><a href="registro.php">registro</a>
-                    
+
             </form>
     </main>
 
 
     </div>
-    
+
     <?php
     session_start();
     $conexion = mysqli_connect("localhost", "root", "", "login")
         or die("Conexion fallida!");
-    
+
     if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
+        $username = trim($_POST['username']) ?? '';
+        $password = trim($_POST['password']) ?? '';
 
         $registros = mysqli_query(
             $conexion,
@@ -42,8 +42,7 @@
             or die("Problemas en el select: " . mysqli_error($conexion));
 
         if ($reg = mysqli_fetch_array($registros)) {
-            if ($reg['password'] === $password)
-             {
+            if ($reg['password'] === $password) {
                 $_SESSION['id'] = $reg['id'];
 
                 // GENERAR UN TOKEN ÚNICO
@@ -55,11 +54,11 @@
                     or die("Problemas en el update: " . mysqli_error($conexion));
 
                 setcookie("user_token", $token, time() + (86400 * 30), "/", "", true, true);
-                
+
                 header("Location: todo.php");
                 exit();
             } else {
-                
+
                 echo "<h1>Contraseña incorrecta</h1>";
                 echo "<a href='index.html'>Volver al login</a>";
             }
